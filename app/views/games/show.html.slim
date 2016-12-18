@@ -1,4 +1,5 @@
 script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"
+
 css:
   body {
     margin: 0;
@@ -10,7 +11,8 @@ javascript:
   function preload() {
     game.load.spritesheet('mummy', '/metalslug_mummy37x45.png', 37, 45, 18);
     game.load.spritesheet('fruits', '/fruitnveg64wh37.png', 64, 37, 37);
-    game.load.spritesheet('button', '/button_sprite_sheet.png', 193, 71);
+    game.load.spritesheet('finishButton', '/finish_sprite_sheet.png', 200, 70);
+    game.load.spritesheet('mercyButton', '/mercy_sprite_sheet.png', 200, 70);
     game.load.image('layout', '/layout.png');
   }
 
@@ -24,7 +26,6 @@ javascript:
   var currentQuestion;
 
   function create() {
-    game.add.tileSprite(0, 0, 520, 800, 'layout');
 
     mummy = game.add.sprite(20, 100, 'mummy', 5);
     mummy.scale.set(4);
@@ -33,10 +34,10 @@ javascript:
 
     anim.play(10, true);
 
-    punish = game.add.button(20, 650, 'button', punishAction, this, 2, 1, 0);
-    mercy = game.add.button(260, 650, 'button', mercyAction, this, 2, 1, 0);
+    punish = game.add.button(40, 650, 'finishButton', punishAction, this, 0, 1);
+    mercy = game.add.button(280, 650, 'mercyButton', mercyAction, this, 0, 1);
 
-    style = { font: "bold 24px Arial", fill: "#010101", wordWrap: true, wordWrapWidth: 350 , align: "center"};
+    style = { font: "bold 24px fedra", fill: "#010101", wordWrap: true, wordWrapWidth: 350 , align: "center"};
     text = game.add.text(70, 400, '' , style);
 
     getQuestion(text)
