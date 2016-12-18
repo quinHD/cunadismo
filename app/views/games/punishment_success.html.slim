@@ -12,6 +12,8 @@ javascript:
   function preload() {
     game.load.spritesheet('shoot', '/shoot.png', 1040, 740, 12);
     game.load.spritesheet('button', '/button_sprite_sheet.png', 193, 71);
+    game.load.spritesheet('mercyButton', '/mercy_sprite_sheet.png', 200, 70);
+
   }
 
   var anim;
@@ -27,25 +29,14 @@ javascript:
     shoot.scale.set(1);
     shoot.smoothed = false;
     anim = shoot.animations.add('walk');
-    anim.onLoop.add(animationLooped, this);
-
-    anim.play(10, false);
-  }
-
-  function animationLooped(sprite, animation) {
-    if (animation.loopCount === 0)
-    {
+    anim.onComplete.add(function () { 
       style = { font: "bold 24px fedra", fill: "#fff", wordWrap: true, wordWrapWidth: 490 , align: "center"};
-      text = game.add.text(30, 350, 'Éxitooo' , style);
-      game.add.button(200, 650, 'button', nextAction, this, 2, 1, 0);
-    } else if (animation.loopCount === 1) {
-          animation.loop = false;
-
-    }
+      window.location.href = "#{ player_game_path(@player, @game)}";
+    }, this);
+    anim.play(8, false);
   }
 
   function nextAction() {
-    window.location.href = "#{ player_game_path(@player, @game)}";
   }
 
 

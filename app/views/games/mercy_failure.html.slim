@@ -9,7 +9,7 @@ javascript:
   var game = new Phaser.Game("100", "100", Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
   function preload() {
-    game.load.spritesheet('fruits', '/fruitnveg64wh37.png', 64, 37, 37);
+    game.load.spritesheet('risa', '/risa.png', 1040, 740, 2);
     game.load.spritesheet('button', '/button_sprite_sheet.png', 193, 71);
   }
 
@@ -18,23 +18,23 @@ javascript:
   var loopText;
   var punish;
   var mercy;
-  var text;
+  // var text;
   var style;
   var currentQuestion;
 
   function create() {
-    fruits = game.add.sprite(20, 100, 'fruits', 2);
-    fruits.scale.set(4);
-    fruits.smoothed = false;
-    anim = fruits.animations.add('walk');
+    risa = game.add.sprite(0, 0, 'risa', 18);
+    risa.scale.set(1);
+    risa.smoothed = false;
+    anim = risa.animations.add('walk');
     anim.onLoop.add(animationLooped, this);
-    text = game.add.text(30, 350, 'Fallaste burlancaster', style);
+    // text = game.add.text(30, 350, 'Fallaste burlancaster', style);
 
-    anim.play(10, true);
+    anim.play(5, true);
   }
 
   function animationLooped(sprite, animation) {
-    if (animation.loopCount === 1)
+    if (animation.loopCount === 10)
     {
       style = { font: "bold 24px fedra", fill: "#fff", wordWrap: true, wordWrapWidth: 490 , align: "center"};
       nextAction();

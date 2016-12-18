@@ -1,23 +1,23 @@
 -
-  description: "¡Qué buena opnión! La respesto aunque no la comparto"
-  truth: "false"
+  description: "¡Que buena opinion! La respeto aunque no la comparto"
+  truth: "true"
 
 -
   description: "La verdad es que de esto no entiendo mucho"
-  truth: "false"
-
--
-  description: "Una llamada no se rastrea en menos de media hora, que lo sé yo"
-  truth: "false"
-
--
-  description: "El jamón no se corta así. Quita"
   truth: "true"
 
 -
-  description: "Pues yo aquí siempre aparco a la primera"
+  description: "Una llamada no se rastrea en menos de media hora, que lo se yo"
   truth: "true"
+
+-
+  description: "El jamon no se corta asi. Quita"
+  truth: "false"
+
+-
+  description: "Pues yo aqui siempre aparco a la primera"
+  truth: "false"
 
 -
   description: "Luego te enseño donde puedes comprar unas gambas buenas de verdad"
-  truth: "true"
+  truth: "false"

@@ -13,10 +13,12 @@ javascript:
     game.load.spritesheet('fruits', '/fruitnveg64wh37.png', 64, 37, 37);
     game.load.spritesheet('finishButton', '/finish_sprite_sheet.png', 200, 70);
     game.load.spritesheet('mercyButton', '/mercy_sprite_sheet.png', 200, 70);
-    game.load.image('layout', '/layout.png');
+    game.load.image('layout', '/fondo_preguntas.png', 520, 800);
+    game.load.image('cunado', '/cunado_solo.png', 520, 800);
+    game.load.image('botones', '/botones.png', 520, 800);
   }
 
-  var mummy;
+
   var anim;
   var loopText;
   var punish;
@@ -26,19 +28,22 @@ javascript:
   var currentQuestion;
 
   function create() {
+    tilesprite = game.add.tileSprite(0, 0, 520, 800, 'layout');
+    tilesprite.scale.set(2);
+    speech = game.add.tileSprite(0, 100, 520, 800, 'botones');
+    speech.scale.set(1.9);
+    tilesprite = game.add.tileSprite(0, 55, 520, 800, 'cunado');
+    tilesprite.scale.set(2);
 
-    mummy = game.add.sprite(20, 100, 'mummy', 5);
-    mummy.scale.set(4);
-    mummy.smoothed = false;
-    anim = mummy.animations.add('walk');
+    punish = game.add.button(85, 1340, 'finishButton', punishAction, this, 0, 1);
+    mercy = game.add.button(545, 1340, 'mercyButton', mercyAction, this, 0, 1);
 
-    anim.play(10, true);
+    mercy.scale.set(1.9);
+    punish.scale.set(1.9);
 
-    punish = game.add.button(40, 650, 'finishButton', punishAction, this, 0, 1);
-    mercy = game.add.button(280, 650, 'mercyButton', mercyAction, this, 0, 1);
 
-    style = { font: "bold 24px fedra", fill: "#010101", wordWrap: true, wordWrapWidth: 350 , align: "center"};
-    text = game.add.text(70, 400, '' , style);
+    style = { font: "bold 48px fedra", fill: "#010101", wordWrap: true, wordWrapWidth: 800 , align: "center"};
+    text = game.add.text(120, 900, '' , style);
 
     getQuestion(text)
   }
@@ -51,13 +56,13 @@ javascript:
     if(validateAnswer(false)) {
       window.location.href = "#{ punishment_success_player_game_path(@player, @game)}";
     } else {
-      window.location.href = "#{ punishment_failure_player_game_path(@player, @game)}";
+      window.location.href = "#{ turra_player_game_path(@player, @game)}";
     }
   }
 
   function mercyAction () {
     if(validateAnswer(true)) {
-      window.location.href = "#{ mercy_success_player_game_path(@player, @game)}";
+      window.location.href = "#{ player_game_path(@player, @game)}";
     } else {
       window.location.href = "#{ mercy_failure_player_game_path(@player, @game)}";
     }
