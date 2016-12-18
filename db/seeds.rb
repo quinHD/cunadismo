@@ -1,0 +1,1 @@
+data_loader = DataLoader.new.load_sentences

@@ -1,0 +1,91 @@
+script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"
+css:
+  body {
+    margin: 0;
+  }
+javascript:
+
+  var game = new Phaser.Game("100", "100", Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
+  function preload() {
+    game.load.spritesheet('mummy', '/metalslug_mummy37x45.png', 37, 45, 18);
+    game.load.spritesheet('fruits', '/fruitnveg64wh37.png', 64, 37, 37);
+    game.load.spritesheet('button', '/button_sprite_sheet.png', 193, 71);
+    game.load.image('layout', '/layout.png');
+  }
+
+  var mummy;
+  var anim;
+  var loopText;
+  var punish;
+  var mercy;
+  var text;
+  var style;
+  var currentQuestion;
+
+  function create() {
+    game.add.tileSprite(0, 0, 520, 800, 'layout');
+
+    mummy = game.add.sprite(20, 100, 'mummy', 5);
+    mummy.scale.set(4);
+    mummy.smoothed = false;
+    anim = mummy.animations.add('walk');
+
+    anim.play(10, true);
+
+    punish = game.add.button(20, 650, 'button', punishAction, this, 2, 1, 0);
+    mercy = game.add.button(260, 650, 'button', mercyAction, this, 2, 1, 0);
+
+    style = { font: "bold 24px Arial", fill: "#010101", wordWrap: true, wordWrapWidth: 350 , align: "center"};
+    text = game.add.text(70, 400, '' , style);
+
+    getQuestion(text)
+  }
+
+  function createQuestion (questionText) {
+    text.setText(questionText);
+  }
+
+  function punishAction () {
+    if(validateAnswer(false)) {
+      window.location.href = "#{ punishment_success_player_game_path(@player, @game)}";
+    } else {
+      window.location.href = "#{ punishment_failure_player_game_path(@player, @game)}";
+    }
+  }
+
+  function mercyAction () {
+    if(validateAnswer(true)) {
+      window.location.href = "#{ mercy_success_player_game_path(@player, @game)}";
+    } else {
+      window.location.href = "#{ mercy_failure_player_game_path(@player, @game)}";
+    }
+  }
+
+  function animationLooped(sprite, animation) {
+    if (animation.loopCount === 1)
+    {
+      loopText = game.add.text(32, 64, 'Animation looped', { fill: 'white' });
+    }
+  }
+
+
+  function validateAnswer(optionSelected) {
+    return(optionSelected === currentQuestion.truth);
+  }
+
+  function update() {
+
+  }
+
+  function getQuestion(text) {
+    $.ajax({
+      url: "#{new_player_game_question_path(@player, @game)}",
+      success: function(response){
+        currentQuestion = response;
+        createQuestion(currentQuestion.description);
+      },
+      error: function(response){console.log("Adios", response)},
+      dataType: "JSON"
+    })
+  }
