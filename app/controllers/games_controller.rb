@@ -4,12 +4,18 @@ class GamesController < ApplicationController
   end
 
   def create
-    player = Player.where(nickname: params[:nickname]).first_or_create(nickname: params[:nickname])
+    player = Player.where(nickname: "Player").first_or_create(nickname: "Player")
     game = Game.create(player: player)
-    redirect_to game
+    game.questions.destroy_all
+    redirect_to "/players/1/games/#{game.id}/intro"
   end
 
   def show
+    @player = Player.find(params[:player_id])
+    @game = @player.games.find(params[:id])
+  end
+
+  def intro
     @player = Player.find(params[:player_id])
     @game = @player.games.find(params[:id])
   end

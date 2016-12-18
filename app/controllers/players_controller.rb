@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    player = Player.where(nickname: params[:nickname]).first_or_create(nickname: params[:nickname])
+    player = Player.where(nickname: "Player").first_or_create(nickname: "Player")
     game = player.games.create
     redirect_to player_game_path(player, game)
   end
