@@ -13,7 +13,7 @@ javascript:
   var game = new Phaser.Game("100", "100", Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
   function preload() {
-    // game.load.spritesheet('mummy', '/metalslug_mummy37x45.png', 37, 45, 18);
+    game.load.spritesheet('nextButton', '/siguiente.sprite_sheet.png', 200, 70);
   }
 
   var mummy;
@@ -48,6 +48,8 @@ javascript:
 
   function create() {
 
+
+
   	game.stage.backgroundColor = "#e4a724";
 
     // mummy = game.add.sprite(20, 100, 'mummy', 5);
@@ -64,6 +66,10 @@ javascript:
     nextLine();
   }
 
+  function nextAction(){
+    window.location.href = "#{ player_game_path(@player, @game)}";
+  }
+
   function update() {
 
   }
@@ -73,7 +79,7 @@ javascript:
 
         if (lineIndex === content.length)
         {
-            //  We're finished
+            next = game.add.button(40, 650, 'nextButton', nextAction, this, 0, 1);
             return;
         }
 
