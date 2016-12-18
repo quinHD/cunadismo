@@ -1,7 +1,23 @@
 -
-  description: "¿Caga el papa?"
+  description: "¡Qué buena opnión! La respesto aunque no la comparto"
+  truth: "false"
+
+-
+  description: "La verdad es que de esto no entiendo mucho"
+  truth: "false"
+
+-
+  description: "Una llamada no se rastrea en menos de media hora, que lo sé yo"
+  truth: "false"
+
+-
+  description: "El jamón no se corta así. Quita"
   truth: "true"
 
 -
-  description: "Ni izquierda ni derechas, lo suyo es el centro"
-  truth: "false"
+  description: "Pues yo aquí siempre aparco a la primera"
+  truth: "true"
+
+-
+  description: "Luego te enseño donde puedes comprar unas gambas buenas de verdad"
+  truth: "true"
